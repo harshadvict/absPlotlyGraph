@@ -1,0 +1,96 @@
+<html>
+
+<head>
+    <script src='https://cdn.plot.ly/plotly-2.2.0.min.js'></script>
+</head>
+
+<body>
+    <div style="max-height:300px">
+        <div id="myChart" style="width:100%">
+        </div>
+    </div>
+    <script>
+        console.log(window.location.href, 'location');
+
+        var config = JSON.parse(decodeURI(window.location.href.split('?')[1].split('&')[0].split('=')[1]));
+        console.log(config, 'config');
+        var layout;
+        if (config.GraphType === "HeatMap") {
+            layout = {
+                autosize: false,
+                width: 400,
+                height: 400,
+                title: config.graphTitle,
+                annotations: [],
+                xaxis: {
+                    autotick: false,
+                    ticks: 'outside',
+                    side: 'down',
+                    automargin: true,
+                    ticklen: 2,
+                    tickwidth: 4,
+
+                    tickfont: {
+                        size: 10,
+                        color: '#000000',
+                    },
+                    tickangle: 90
+
+                },
+                yaxis: {
+                    autotick: false,
+                    ticks: 'outside',
+                    ticksuffix: ' ',
+                    automargin: true,
+                    ticklen: 2,
+                    tickwidth: 4,
+                    tickfont: {
+                        size: 10,
+                        color: '#000000',
+                    },
+                },
+            };
+
+            for (var i = 0; i < data[0].y.length; i++) {
+                for (var j = 0; j < data[0].x.length; j++) {
+                    var currentValue = data[0].z[i][j];
+                    if (currentValue != 0.0) {
+                        var textColor = 'black';
+                    } else {
+                        var textColor = 'black';
+                    }
+                    var result = {
+                        xref: 'x1',
+                        yref: 'y1',
+                        x: data[0].x[j],
+                        y: data[0].y[i],
+                        text: data[0].z[i][j],
+                        font: {
+                            //family: 'Arial',
+                            size: 10,
+                            //color: 'rgb(50, 171, 96)'
+                        },
+                        showarrow: false,
+                        font: {
+                            color: textColor
+                        }
+                    };
+                    //console.log(result)
+                    layout.annotations.push(result);
+                }
+            }
+        } else {
+            layout = {
+                autosize: false,
+                width: 400,
+                height: 400,
+                title: config.graphTitle
+            };
+        }
+        Plotly.newPlot('myChart', config.data, layout, {
+            displayModeBar: false
+        });
+    </script>
+</body>
+
+</html>
