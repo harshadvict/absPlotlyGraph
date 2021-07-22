@@ -15,7 +15,7 @@
         var config = JSON.parse(decodeURI(window.location.href.split('?')[1].split('&')[0].split('=')[1]));
         console.log(config, 'config');
         var layout;
-        if (config.GraphType === "HeatMap") {
+        if (config.graphType === "HeatMap") {
             layout = {
                 autosize: false,
                 width: 400,
