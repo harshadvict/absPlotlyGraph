@@ -84,7 +84,14 @@
                 autosize: false,
                 width: 400,
                 height: 400,
-                title: config.graphTitle
+                title: config.graphTitle,
+                legend: {
+                x: 0.1,
+                y: -0.2,
+                orientation: "h"
+                },
+                paper_bgcolor: "rgba(0,0,0,0)",
+                plot_bgcolor:"rgba(0,0,0,0)"
             };
         }
         Plotly.newPlot('myChart', config.data, layout, {
