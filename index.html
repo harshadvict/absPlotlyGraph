@@ -5,7 +5,7 @@
 </head>
 
 <body>
-    <div style="max-height:300px">
+    <div>
         <div id="myChart" style="width:100%">
         </div>
     </div>
@@ -50,7 +50,14 @@
                     },
                 },
                 paper_bgcolor: "rgba(0,0,0,0)",
-                plot_bgcolor:"rgba(0,0,0,0)"
+                plot_bgcolor:"rgba(0,0,0,0)",
+                margin: {
+                        l: 20,
+                        r: 20,
+                        b: 30,
+                        t: 30,
+                        pad: 4
+                   },
             };
 
             for (var i = 0; i < config.data[0].y.length; i++) {
